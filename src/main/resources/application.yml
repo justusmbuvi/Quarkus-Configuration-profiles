@@ -1,0 +1,48 @@
+quarkus:
+  http:
+    port: 8081
+  datasource:
+    db-kind: postgresql
+    username: username
+    password: password
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/my_db
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+  log:
+    console:
+      level: INFO
+
+person:
+  name: john
+  age: 28
+  height: 165
+
+"%dev":
+  quarkus:
+    http:
+      port: 8082
+    log:
+      console:
+        level: ALL
+  person:
+    name: alice
+    age: 20
+    height: 154
+
+"%test":
+  quarkus:
+    http:
+      port: 9090
+      access-log:
+        enabled: true
+  hello:
+    message: Hello test message
+
+"%prod":
+  quarkus:
+    package:
+      type: uber-jar
+  hello:
+    message: Hello prod message
